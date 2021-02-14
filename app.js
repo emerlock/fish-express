@@ -23,15 +23,17 @@ app.get('/fish', (req, res) => {
   dynamoDB
   .scan({
     TableName: "Fish-Price",
-    FilterExpression: "date BETWEEN :start and :end",
-    ExpressionFilterValues: {
+    FilterExpression: "#date BETWEEN :start and :end",
+    ExpressionAttributeValues: {
       ":start": {
         "S": start_date,
       },
       ":end": {
         "S": end_date,
       }
-
+    },
+    ExpressionAttributeNames: {
+      "#date": "date"
     }
   })
   .promise()
@@ -44,8 +46,6 @@ app.get('/fish', (req, res) => {
     .promise()
     .then(data => res.send(data));
  }
-  
-
 })
 
 // Error handler
