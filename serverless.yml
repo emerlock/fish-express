@@ -1,0 +1,7 @@
+org: emerlock
+app: fish-express
+component: express
+name: express-starter
+
+inputs:
+  src: ./
